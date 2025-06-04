@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Poster Jurusan SMK</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #e3f2fd, #bbdefb);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .poster, .project-view {
+      background: white;
+      border: 3px solid #1976d2; /* Border biru ditambahkan */
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      text-align: center;
+      animation: fadeInSlideUp 0.8s ease-in-out;
+    }
+
+    .project-view {
+      display: none;
+    }
+
+    .logo, .free-dsp {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    .logo { animation-delay: 0.3s; }
+    .free-dsp { animation-delay: 0.6s; }
+
+    h1 {
+      font-size: 2em;
+      color: #0d47a1;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out 0.9s forwards;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out 1.2s forwards;
+    }
+
+    .button-group button {
+      background: #1976d2;
+      color: white;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, border 0.3s;
+    }
+
+    .button-group button:hover {
+      background: #0d47a1;
+      border-color: white;
+      transform: scale(1.05);
+    }
+
+    .description {
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px dashed #64b5f6; /* Border dashed ditambahkan */
+      color: #333;
+      font-size: 1.1em;
+      min-height: 100px;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out 1.5s forwards;
+    }
+
+    .description a {
+      color: #1976d2;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .copyright {
+      margin-top: 25px;
+      font-size: 0.9em;
+      color: #555;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out 1.8s forwards;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      background-color: #ef5350;
+      color: white;
+      border: 2px solid transparent;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s, transform 0.2s, border 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #c62828;
+      border-color: white;
+      transform: scale(1.05);
+    }
+
+    .project-view h2 {
+      color: #0d47a1;
+      font-size: 1.6em;
+      margin-bottom: 20px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .project-frame-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border: 2px solid #0d47a1; /* Border biru tua ditambahkan */
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: white;
+      border-radius: 12px;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInSlideUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .button-group {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      .poster {
+        padding: 20px 15px;
+      }
+
+      iframe {
+        height: 800px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="poster" id="mainContent">
+    <img src="logo-sekolah.png" alt="Logo Sekolah" class="logo">
+    <img src="free-dsp-banner.png" alt="Free DSP Banner" class="free-dsp">
+    <h1>Kenali Jurusan di SMK BINA INFORMATIKA</h1>
+
+    <div class="button-group">
+      <button onclick="tampilkanDeskripsi('mm')">Multimedia (MM)</button>
+      <button onclick="tampilkanDeskripsi('rpl')">Rekayasa Perangkat Lunak (RPL)</button>
+      <button onclick="tampilkanDeskripsi('tkj')">Teknik Komputer dan Jaringan (TKJ)</button>
+      <button onclick="tampilkanDeskripsi('otkp')">OTKP</button>
+      <button onclick="tampilkanDeskripsi('pkm')">PKM</button>
+    </div>
+
+    <div class="description" id="deskripsi">
+      Klik tombol jurusan di atas untuk melihat penjelasan jurusan.
+    </div>
+
+    <div class="copyright">
+      &copy; 2025 SMK Bina Informatika | Dibuat oleh M. Hamdan Alawi XI RPL
+    </div>
+  </div>
+
+  <div class="project-view" id="projectView">
+    <h2 id="judulProyek">Contoh Proyek RPL</h2>
+      <iframe id="projectFrame" src=""></iframe>
+    <br>
+  </div>
+
+    <button class="back-button" onclick="kembali()">🔙 Kembali</button>
+    
+  <script>
+    function tampilkanDeskripsi(jurusan) {
+      const deskripsi = {
+        mm: "📸 Multimedia (MM): Mempelajari desain grafis, animasi, fotografi, editing video, dan produksi konten digital. SMK BINA INFORMATIKA.",
+        rpl: `💻 Rekayasa Perangkat Lunak (RPL): Fokus pada pemrograman, pengembangan aplikasi, software, dan teknologi web.<br><br>
+        Contoh project siswa:
+        <ul>
+          <li><a onclick="bukaProyek('https://hamdantanaka.github.io/game-tebak-gambar/')">Game Tebak Gambar</a></li>
+          <li><a onclick="bukaProyek('https://hamdantanaka.github.io/Rumah-sakit-1-/')">Sistem Rumah Sakit</a></li>
+          <li><a onclick="bukaProyek('https://hamdantanaka.github.io/animasi-bergerak/')">Animasi Bergerak</a></li>
+          <li><a onclick="bukaProyek('https://hamdantanaka.github.io/PPDB-SMK/')">PPDB Online</a></li>
+        </ul>
+        SMK BINA INFORMATIKA.`,
+        tkj: "⚙️ Teknik Komputer dan Jaringan (TKJ): Belajar perakitan komputer, jaringan LAN/WAN, dan administrasi server. SMK BINA INFORMATIKA.",
+        otkp: "📂 OTKP: Administrasi digital, surat-menyurat, dan teknologi perkantoran modern. SMK BINA INFORMATIKA.",
+        pkm: "💰 PKM: Mempelajari keuangan, akuntansi, perbankan, dan ekonomi makro. SMK BINA INFORMATIKA."
+      };
+
+      document.getElementById("deskripsi").innerHTML = deskripsi[jurusan] || "Jurusan tidak ditemukan.";
+    }
+
+    function bukaProyek(url) {
+      const judul = {
+        "game-tebak-gambar": "Game Tebak Gambar",
+        "Rumah-sakit-1-": "Sistem Rumah Sakit",
+        "animasi-bergerak": "Animasi Bergerak",
+        "PPDB-SMK": "PPDB Online"
+      };
+
+      const nama = Object.keys(judul).find(key => url.includes(key));
+      const namaProyek = judul[nama] || "Contoh Proyek RPL";
+
+      document.getElementById("judulProyek").textContent = namaProyek;
+      document.getElementById("mainContent").style.display = "none";
+      document.getElementById("projectView").style.display = "block";
+      document.getElementById("projectFrame").src = url;
+    }
+
+    function kembali() {
+      document.getElementById("mainContent").style.display = "block";
+      document.getElementById("projectView").style.display = "none";
+      document.getElementById("projectFrame").src = "";
+    }
+  </script>
+</body>
+</html>
